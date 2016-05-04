@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace TiedonTallennusConsole
 {
@@ -12,25 +13,29 @@ namespace TiedonTallennusConsole
         static void Main(string[] args)
         {
             string tiedosto = "C:\\Temp\\Lämpötila.txt"; //tai @"C:\Temp\Lämpötila.txt";
+
+           NumberFormatInfo nfi = new CultureInfo("fi-FI", false).NumberFormat;
+           Console.WriteLine(nfi.NumberDecimalDigits);
+
             //Luetaan aiemmin asetettu lämpötila
             if (File.Exists(tiedosto))
             {
-                string aiempilämpötila = File.ReadAllText(tiedosto);
-                Console.WriteLine("Aiemmin asetettu lämpötila oli: " + aiempilämpötila + " astetta");
+                string aiempiarvo = File.ReadAllText(tiedosto);
+                Console.WriteLine("Aiemmin asetettu teksti oli: " + aiempiarvo);
             }
             else
             {
                 Console.Write("Tervetuloa sovellukseen - ");
             }
-
-            int lämpötila = 0;
-            Console.Write("Anna uusi lämpötila: ");
-            string syöte = Console.ReadLine();
-            lämpötila = int.Parse(syöte);
+            //decimal lämpötila;
+            string teksti;
+            Console.Write("Anna uusi teksti: ");
+            teksti = Console.ReadLine();
+            //lämpötila = decimal.Parse(syöte);
             //Tiedostoon
 
-            File.WriteAllText(tiedosto, lämpötila.ToString());
-            Console.WriteLine("Uusi lämpötila on tallennettu!");
+            File.AppendAllText(tiedosto, teksti+"\r\n");
+            Console.WriteLine("Uusi teksti on tallennettu!");
             Console.ReadLine();
 
 
