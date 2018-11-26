@@ -21,7 +21,7 @@ namespace TiedonTallennusConsole
             if (File.Exists(tiedosto))
             {
                 string aiempiarvo = File.ReadAllText(tiedosto);
-                Console.WriteLine("Aiemmin asetettu teksti oli: " + aiempiarvo);
+                Console.WriteLine("Aiemmin asetettu teksti oli tämä: " + aiempiarvo);
             }
             else
             {
